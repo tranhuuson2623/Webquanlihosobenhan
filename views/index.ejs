@@ -1,0 +1,52 @@
+<%- include("partials/header") -%>
+    <div class="d-flex justify-content-center mt-2">
+        <form class="d-flex" action="/" method="get">
+            <input type="text" name="search" id="search">
+            <input class="btn btn-primary" type="submit" value="Search">
+        </form>
+    </div>
+    <div class="table-wrapper">
+        <% if (benhnhans.length > 0) {%>
+            <table class="table table-hovered">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Họ và tên</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Tuổi</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Ngày nhập viện</th>
+                        <th scope="col">Khoa</th>
+                        <th scope="col">Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% benhnhans.forEach((player, index) => { %>
+                        <tr>
+                            <th scope="row"><%= player.id %></th>
+                            <td ><%= player.hovaten %></td>
+                            <td><img src="/assets/img/<%= player.image %>" class="rounded-circle player-img" alt=""></td>
+                            <td><%= player.tuoi %></td>
+                            <% if (player.gioitinh) {%>
+                                <td>Nam</td>
+                            <%} else {%>
+                                <td>Nữ</td>
+                            <%}%>
+                            <td><%= player.ngaynhapvien %></td>
+                            <td><%= player.khoa %></td>
+                            <td><%= player.ghichu %></td>
+                            <td>
+                                <a href="/edit/<%= player.id %>" target="" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                                <a href="/delete/<%= player.id %>" class="btn btn-sm btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center">No benhnhan found. Go <a href="/add" >here</a> Chỉnh sửa.</p>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>

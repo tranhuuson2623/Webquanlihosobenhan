@@ -1,0 +1,57 @@
+<%- include("partials/header") -%>
+<div class="container">
+    <% if (message) { %>
+        <p class="text-center text-danger"><%= message %></p>
+    <% } %>
+
+    <% if (player) { %>
+        <form class="add-player-form" action="" method="POST" enctype="multipart/form-data">            
+            <div class="form-group col-md-6">
+                <label for="first-name">Họ và tên</label>
+                <input type="text" class="form-control" name="hovaten" id="Name" value="<%= player.hovaten %>" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="first-name">Tuổi</label>
+                <input type="number" class="form-control" name="tuoi" id="Price" value="<%= player.tuoi %>" required>
+            </div>                        
+            <div class="form-group col-md-6">
+                <label class="mr-1" for="gioitinh">Giới tính</label>
+                <% if (player.gioitinh) {%>
+                    <input type="radio" id="male" name="gioitinh" value="true" checked>
+                    <label for="male">Nam</label>
+                    <input type="radio" id="female" name="gioitinh" value="false">
+                    <label for="female">Nữ</label>
+                <%} else {%>
+                    <input type="radio" id="male" name="gioitinh" value="true" checked>
+                    <label for="male">Nam</label>
+                    <input type="radio" id="female" name="gioitinh" value="false">
+                    <label for="female">Nữ</label>
+                <%}%>
+                <!-- <input type="number" class="form-control" name="Amount" id="Amount" placeholder="Số Lượng" value="<%= player.amount%>" required> -->
+            </div>
+            <div class="form-group col-md-6">
+                <label for="Status">Ngày nhập viện</label>
+                <input type="date" name="ngaynhapvien" id="ngaynhapvien">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="first-name">Khoa</label>
+                <select id="khoa" name="khoa" class="form-control" required>
+                    <option selected disabled>Chọn khoa</option>
+                    <option>Thần kinh</option>
+                    <option>Sinh Lý</option>
+                    <option>Da Liễu</option>                        
+                </select>
+            </div>  
+            <div class="form-group col-md-6">
+                <label for="first-name">Ghi chú</label>
+                <input type="text" class="form-control" name="ghichu" id="ghichu" value="<%= player.ghichu %>">
+            </div>
+            <button type="submit" class="form-group btn btn-success col-md-6">Update Benhnhan</button>
+        </form>
+    <% } else { %>
+        <p class="text-center">Benhnhan Not Found. Go <a href="/add">here</a> to add benhnhan.</p>
+    <% } %>
+</div>
+</div>
+</body>
+</html>
